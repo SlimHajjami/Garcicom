@@ -1,0 +1,33 @@
+{% extends "GarcicomBundle:default:index.html.twig" %}
+{% block body %}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(form) }}
+
+            <h4 class="card-title">Affecter une tâche</h4>
+            <form class="forms-sample">
+                <div class="form-group">
+                    <label for="exampleInputName1">Titre</label>
+                    {{ form_widget(form.titre, {'attr': {'class': 'form-control ','placeholder':'Titre :'}}) }}
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Libelle</label>
+                    {{ form_widget(form.libelle, {'attr': {'class': 'form-control ','placeholder':'Libelle :'}}) }}
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Personne Charger</label>
+                    {{ form_widget(form.Employee, {'attr': {'class': 'form-control ','placeholder':'Employee :'}}) }}
+
+                </div>
+                {{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-primary btn-default mt-3' }}) }} </div>
+        {{ form_end(form) }}
+                <button class="btn btn-dark">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends "GarcicomBundle:default:index.html.twig" %}
+
+{% block body %}
+
+    {% block javascripts %}
+        <script src="{{ asset('bundles/Garcicom/js/off-canvas.js')}}"></script>
+        <script src="{{ asset('bundles/Garcicom/vendors/js/vendor.bundle.base.js')}}"></script>
+        <script src="{{ asset('bundles/Garcicom/vendors/lightgallery/js/lightgallery-all.min.js')}}"></script>
+        <script src="{{ asset('bundles/Garcicom/js/hoverable-collapse.js')}}"></script>
+        <script src="{{ asset('bundles/Garcicom/js/misc.js')}}"></script>
+        <script src="{{ asset('bundles/Garcicom/js/settings.js')}}"></script>
+        <script src="{{ asset('bundles/Garcicom/js/todolist.js')}}"></script>
+        <script src="{{ asset('bundles/Garcicom/js/light-gallery.js')}}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+    {% endblock %}
+    <link rel="stylesheet" href="{{ asset('bundles/Garcicom/vendors/lightgallery/css/lightgallery.css')}}">
+
+    <style type="text/css">
+        .item{
+            transition: .5s ease-in-out;
+        }
+        .item:hover{
+            filter: brightness(80%);
+        }
+    </style>
+
+    <body >
+
+    {% for x in societe %}
+
+    <div class= "row" >
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="border-bottom text-center pb-4">
+                                <img src={{ asset('images/')}}{{ x.image[1] }} alt="profile" class="img-lg rounded-circle mb-3">
+
+                            </div>
+
+                            <div class="border-bottom py-4">
+                                <div class="d-flex mb-3">
+                                    <div class="progress progress-md flex-grow">
+                                        <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="55" style="width: 55%" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="progress progress-md flex-grow">
+                                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="75" style="width: 75%" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-4">
+                                <p class="clearfix">
+                                    <span class="float-left"> Status </span>
+                                    <span class="float-right text-muted"> {{ x.note }} </span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="float-left"> Phone </span>
+                                    <span class="float-right text-muted"> {{ x.tel }} </span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="float-left"> Mail </span>
+                                    <span class="float-right text-muted"> {{ x.email }} </span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="float-left"> Facebook </span>
+                                    <span class="float-right text-muted">
+                              <a href="#">David Grey</a>
+                            </span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="float-left"> Twitter </span>
+                                    <span class="float-right text-muted">
+                              <a href="#">@davidgrey</a>
+                            </span>
+                                </p>
+                            </div>
+                            {{ form(form) }}
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h3>{{ x.nom }}</h3>
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="mb-0 mr-2 text-muted">{{ x.adresse }}</h5>
+                                        <div class="br-wrapper br-theme-css-stars"><select id="profile-rating" name="rating" autocomplete="off" style="display: none;">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select><div class="br-widget"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="2"></a><a href="#" data-rating-value="3" data-rating-text="3"></a><a href="#" data-rating-value="4" data-rating-text="4"></a><a href="#" data-rating-value="5" data-rating-text="5"></a></div></div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <div>
+                                    <button class="btn btn-outline-secondary btn-icon">
+                                        <i class="mdi mdi-comment-processing"></i>
+                                    </button>
+                                    <button class="btn btn-primary">Request</button>
+                                </div>
+                            </div>
+                            <div class="mt-4 py-2 border-top border-bottom">
+                                <ul class="nav profile-navbar">
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="#">
+                                            <i class="mdi mdi-account-outline"></i> Info </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">
+                                            <i class="mdi mdi-calendar"></i> Portfolio </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="row grid-margin">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Portfolio</h4>
+                                            <p class="card-text"> Click on any image to open in lightbox gallery </p>
+                                            {% for i in image %}
+                                                <div id="lightgallery" class="row lightGallery">
+
+                                                    <a href="{{ asset('images/')}}{{ i.name }}" class="image-tile" data-fancybox="gallery1">
+                                                        <img src="{{ asset('images/')}}{{ i.name }}" class="image-tile" alt="image small" height="100" width="100">
+                                                        <a href ="{{ asset('images/') }}{{ i.name }}" download >download</a>
+                                                    </a>
+                                                </div>
+
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </body>
+{% endblock %}

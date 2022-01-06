@@ -1,0 +1,79 @@
+{% extends "GarcicomBundle:Default:Base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.css"
+          integrity="sha256-LOn2s1oZo044zPt6G3x2mGJnhtfXp6ZE1skHztfqnA8=" crossorigin="anonymous">
+<style>
+    #calendar{
+        width: 100%;
+        margin: auto;
+    }
+    .fc-day-grid-event.fc-h-event.fc-event.fc-start.fc-end.wpfc-more
+    {
+        background: #ffffff !important;
+        border-color: #00469e !important;
+    }
+
+</style>
+{% endblock %}
+{% block javascripts %}
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.js"
+            integrity="sha256-9puLsDK3mkUV8FSsGLlSRT+uJogUINfaCq56mzSUP/w=" crossorigin="anonymous"></script>
+    <script>
+window.onload = () => {
+let calendarEl = document.getElementById('calendar');
+            let calendar = new FullCalendar.Calendar(calendarEl, {
+
+                allDaySlot:false,
+                initialView: 'timeGridWeek',
+                locale: 'fr',
+                editable: true,
+                eventResizableFromStart:true,
+                headerToolbar: {
+                    start: 'prev,next today',
+
+                    end: 'dayGridMonth,timeGridWeek,dayGridDay'
+                },
+            events:{{ data|raw }}
+
+            });
+            calendar.on('eventChange',(e) => {
+                console.log(e);
+            let url = `calendar/api/${e.event.id}/edit`
+                let donnees = {
+
+                    "title":e.event.title,
+                    "description":e.event.extendedProps.description,
+                    "start":e.event.start,
+                    "end":e.event.end,
+                    "backgroundColor":e.event.backgroundColor,
+                    "borderColor":e.event.borderColor,
+                    "textColor":e.event.textColor
+
+                }
+                let xhr = new XMLHttpRequest;
+            xhr.open("PUT",url);
+            xhr.send(JSON.stringify(donnees));
+    alert('modification réussi');
+            })
+
+            calendar.render();
+};
+    </script>
+
+{% endblock %}
+
+
+{% block body %}
+    <div class="card">
+        <div class="card-body">
+    <div id="calendar" class="full-calendar fc fc-unthemed fc-ltr" >
+
+    </div>
+
+
+    </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,58 @@
+garcicom_homepage:
+    path:     /
+    defaults: { _controller: GarcicomBundle:ToDo:Add }
+AddSociete:
+    path:     /addsociete
+    defaults: { _controller: GarcicomBundle:Societe:Add }
+AddTodo:
+    path:     /acceuil
+    defaults: { _controller: GarcicomBundle:ToDo:Add }
+ListSociete:
+    path:     /listsociete
+    defaults: { _controller: GarcicomBundle:Societe:listSociete }
+detailportfolio:
+    path:     /detailportfolio{id}
+    defaults: { _controller: GarcicomBundle:Portfolio:detail }
+DetailSociete:
+    path:     /detail{id}
+    defaults: { _controller: GarcicomBundle:Societe:detailSociete  }
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+adesigns_calendar:
+    resource: "@ADesignsCalendarBundle/Resources/config/routing.xml"
+calendar:
+    path:     /calendar
+    defaults: { _controller: GarcicomBundle:Calendar:Calendar }
+addcalendar:
+    path:     /addcalendar
+    defaults: { _controller: GarcicomBundle:Calendar:add }
+addportfolio:
+    path:     /addportfolio{id}
+    defaults: { _controller: GarcicomBundle:Portfolio:add }
+Game:
+    path:     /Game
+    defaults: { _controller: GarcicomBundle:Game:index }
+messages:
+    path:     /messages
+    defaults: { _controller: GarcicomBundle:Messages:index }
+send:
+    path:     /send
+    defaults: { _controller: GarcicomBundle:Messages:send }
+received:
+    path:     /received
+    defaults: { _controller: GarcicomBundle:Messages:received }
+sent:
+    path:     /sent
+    defaults: { _controller: GarcicomBundle:Messages:sent }
+read:
+    path:     /read/{id}
+    defaults: { _controller: GarcicomBundle:Messages:read }
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: GarcicomBundle:Messages:delete }
+check:
+    path:     /check/{id}
+    defaults: { _controller: GarcicomBundle:ToDo:check }
+tache:
+    path:     /tache
+    defaults: { _controller: GarcicomBundle:Tache:add }

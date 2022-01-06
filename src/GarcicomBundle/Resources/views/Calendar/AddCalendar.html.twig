@@ -1,0 +1,15 @@
+{% extends "GarcicomBundle:default:index.html.twig" %}
+
+{% block body %}
+{{ form_start(form) }}
+<div>
+    Background <input type="color" value="{{ form_widget(form.backgroundcolor,{'attr':{'type':'color'}}) }}"
+</div>
+<div>
+    BorderColor <input type="color" value="{{ form_widget(form.borderColor,{'attr':{'type':'color'}}) }}"
+</div>
+<div>
+    TextColor <input type="color" value={{ form_widget(form.textcolor,{'attr':{'type':'color'}}) }}
+</div>
+{{ form_end(form) }}
+    {% endblock %}

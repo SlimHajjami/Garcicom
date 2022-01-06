@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Calendars list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Description</th>
+                <th>Allday</th>
+                <th>Backgroundcolor</th>
+                <th>Bordercolor</th>
+                <th>Textcolor</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for calendar in calendars %}
+            <tr>
+                <td><a href="{{ path('calendar_show', { 'id': calendar.id }) }}">{{ calendar.id }}</a></td>
+                <td>{{ calendar.title }}</td>
+                <td>{% if calendar.start %}{{ calendar.start|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if calendar.end %}{{ calendar.end|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ calendar.description }}</td>
+                <td>{{ calendar.allDay }}</td>
+                <td>{{ calendar.backgroundcolor }}</td>
+                <td>{{ calendar.borderColor }}</td>
+                <td>{{ calendar.textcolor }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('calendar_show', { 'id': calendar.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

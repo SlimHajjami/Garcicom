@@ -1,0 +1,50 @@
+{% extends "GarcicomBundle:default:index.html.twig" %}
+{% block body %}
+
+    <div class="row ">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Order Status</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+
+                                <th> Image </th>
+                                <th> Nom </th>
+                                <th> Reference </th>
+                                <th> Telephone </th>
+                                <th> Adresse </th>
+                                <th> E-mail </th>
+                                <th> Note </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                 {% for x in societes %}
+                                 <tr>
+
+                                 <td>
+                                    <img src="{{ asset('images/')}}{{ x.image[1] }}" alt="image">
+
+                                </td>
+
+                                <td> {{ x.nom }} </td>
+                                <td> {{ x.reference }} </td>
+                                <td> {{ x.tel }} </td>
+                                <td>{{ x.adresse }}</td>
+                                <td>{{ x.email }}</td>
+                                <td> {{ x.note }} </td>
+                                <td>
+                                    <a href="{{ path ('DetailSociete',{'id':x.id })}}" type="button" class="btn btn-success btn-rounded btn-fw">Visualiser</a>                                </td>
+                                 {% endfor %}
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
